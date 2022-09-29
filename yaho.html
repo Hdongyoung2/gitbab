@@ -7,18 +7,30 @@
     <link rel="stylesheet" href="style.css">
     <title>오리너구리</title>
 </head>
-<body>
-    
-    <h1><a href="index.html" > 바오밥 생태계</a> </h1>
+<body style="background-color:white; color:black">
+    <h1><a href="index.html"> 바오밥 성장일지</a></h1>
+    <input type="button" value="day" onclick="
+        document.querySelector('body').style.backgroundColor='white';
+        document.querySelector('body').style.color='black';
+    ">
+     <input type="button" value="night" onclick="
+        document.querySelector('body').style.backgroundColor='gray';
+        document.querySelector('body').style.color='white';
+     ">
 <div id=grid>
     <ol>
-    <li><a href="baobab.html">1.바오밥나무</a> </li>
-    <li><a href="duckrakun.html" style="color:red">2.오리너구리</a> </li>
-    <li><a href="rusxoghks.html">3.수달</a>  </li>
+    <li><a href="baobab.html">바오밥나무</a></li>
+    <li><a href="yaho.html" style="color:red">오리너구리</a></li>
+    <li><a href="rusxoghks.html">수달</a></li>
     </ol>
     <div>
     <img src="야호오구.png">
-    <br><strong>야호오구는 귀엽다</strong>
+    <br>
+    <h2>git upload</h2>
+        <p>git init<br>
+            git add .<br>
+            git commit -m "message"<br>
+            git push -u origin master</p>
     </div>
 </div>
 </body>
