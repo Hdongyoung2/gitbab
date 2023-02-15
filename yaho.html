@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
     <title>오리너구리</title>
+    
 </head>
 <body style="background-color:white; color:black">
     <h1><a href="index.html"> 바오밥 성장일지</a></h1>
@@ -27,11 +28,29 @@
     <img src="img/야호오구.png">
     <br>
     <h2>git upload</h2>
+   <button id="gitCommandButton">Copy Git Command</button>
         <p>git init<br>
             git add .<br>
             git commit -m "message"<br>
             git push -u origin master</p>
     </div>
 </div>
+<script>
+    document.getElementById("gitCommandButton").addEventListener("click", function() {
+        var gitCommand = "git init\n" +
+                         "git add .\n" +
+                         "git commit -m \"message\"\n" +
+                         "git push -u origin master";
+        navigator.clipboard.writeText(gitCommand)
+          .then(function() {
+            console.log("Git command copied to clipboard");
+            alert("Git command copied to clipboard");
+          })
+          .catch(function() {
+            console.error("Failed to copy Git command");
+            alert("Failed to copy Git command");
+          });
+      });
+    </script>
 </body>
 </html>
