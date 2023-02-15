@@ -43,12 +43,12 @@
                          "git push -u origin master";
         navigator.clipboard.writeText(gitCommand)
           .then(function() {
-            console.log("Git command copied to clipboard");
-            alert("Git command copied to clipboard");
+            console.log("복사완료!");
+            alert("복사완료!");
           })
           .catch(function() {
-            console.error("Failed to copy Git command");
-            alert("Failed to copy Git command");
+            console.error("오류!");
+            alert("오류!");
           });
       });
     </script>
