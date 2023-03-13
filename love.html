@@ -1,0 +1,183 @@
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>단어 외우기</title>
+  </head>
+  <body>
+    <h1>메이퓨어 가격표</h1>
+    <p id="word"></p>
+    <button id="show-meaning">가격보기</button>
+    <button id="prev-word">다음문제</button>
+    <script>
+      const words = [
+        { word: '토닝/IPL/제네 1회', meaning: ' 22,000 ' },
+        { word: '토닝/IPL/제네 2회', meaning: ' 110,000 ' },
+        { word: '토닝/IPL/제네 3회', meaning: ' 209,000 ' },
+        { word: '부분 레이저 1회', meaning: '  11,000 ' },
+        { word: '피코 부분 토닝 1회', meaning: '  22,000 ' },
+        { word: '피코토닝 / MLA토닝 1회', meaning: '  66,000 ' },
+        { word: '피코토닝 / MLA토닝 2회', meaning: '  275,000 ' },
+        { word: '피코토닝 / MLA토닝 3회', meaning: '  440,000 ' },
+        { word: '듀얼토닝 1회', meaning: '  132,000 ' },
+        { word: '듀얼토닝 3회', meaning: '  3회는 없어 바부야 ' },
+        { word: '듀얼토닝 5회', meaning: '  550,000 ' },
+        { word: '듀얼토닝 10회', meaning: '    880,000 ' },
+        { word: '레이저+관리(토닝/IPL/제네) 1회', meaning: '  55,000 ' },
+        { word: '레이저+관리(토닝/IPL/제네)	3회', meaning: '  154,000 ' },
+        { word: '레이저+관리(토닝/IPL/제네)	5회', meaning: '  242,000 ' },
+        { word: '레이저+관리(토닝/IPL/제네) 10회', meaning: '  462,000 ' },
+        { word: '토닝+IPL+관리	1회', meaning: '  77,000 ' },
+        { word: '토닝+IPL+관리	5회(+IPL 2회)', meaning: '  286,000 ' },
+        { word: '토닝+IPL+관리	10회(+IPL 3회)', meaning: '  528,000 ' },
+        { word: '피코토닝+관리	1회', meaning: '  99,000 ' },
+        { word: '피코토닝+관리	5회', meaning: '  412,500 ' },
+        { word: '피코토닝+관리	10회', meaning: '  660,000 ' },
+        { word: '피코토닝+IPL+관리	1회', meaning: '  121,000 ' },
+        { word: '피코토닝+IPL+관리	5회(+IPL 2회)', meaning: '  456,500 ' },
+        { word: '피코토닝+IPL+관리	10회(+IPL 3회)', meaning: '  726,000 ' },
+        { word: '듀얼토닝+관리 1회', meaning: '  165,000 ' },
+        { word: '듀얼토닝+관리 5회', meaning: '  687,500 ' },
+        { word: '듀얼토닝+관리 10회', meaning: '  1,100,000 ' },
+        { word: '토닝+제네+관리	1회', meaning: '  77,000 ' },
+        { word: '토닝+제네+관리	3회', meaning: '  352,000 ' },
+        { word: '피코프락셀+크라이오+PDT그린 1회', meaning: '  110,000 ' },
+        { word: '피코프락셀+크라이오+PDT그린 3회', meaning: '  231,000 ' },
+        { word: '피코프락셀+크라이오+PDT그린 5회', meaning: '  330,000 ' },
+        { word: '프락셀+재생 1회', meaning: '  110,000 ' },
+        { word: '프락셀+재생 3회', meaning: '  275,000 ' },
+        { word: 'CO2 1개', meaning: '  3,300 ' },
+        { word: 'CO2	비립종/한관종', meaning: '  5,500 ' },
+        { word: 'CO2	점 얼굴전체', meaning: '  99,000 ' },
+        { word: 'CO2	편사 얼굴전체', meaning: '  198,000 ' },
+        { word: 'CO2	비립종/한관종(얼전)', meaning: '  297,000 ' },
+        { word: 'CO2	쥐젖+편사 목전체', meaning: '  297,000 ' },
+        { word: '진단서,소견서,확인서', meaning: '10,000 ' },
+        { word: '진료의뢰서,차트복사', meaning: '무료' },
+        { word: '런치필	1회', meaning: '  22,000 ' },
+        { word: '베이직	1회', meaning: '  44,000 ' },
+        { word: '베이직	5회', meaning: '  198,000 ' },
+        { word: '베이직	10회', meaning: '  374,000 ' },
+        { word: '아쿠아베이직 1회', meaning: '  66,000 ' },
+        { word: '아쿠아베이직 5회', meaning: '  308,000 ' },
+        { word: '아쿠아베이직 10회', meaning: '  594,000 ' },
+        { word: '퍼펙트패키지 5주', meaning: '  451,000 ' },
+        { word: '퍼펙트패키지 10주', meaning: '  759,000 ' },
+        { word: '알라딘필 1회', meaning: '  110,000 ' },
+        { word: '알라딘필 3회', meaning: '  275,000 ' },
+        { word: '알라딘필 1회(목포함)', meaning: '  154,000 ' },
+        { word: '알라딘필 3회(목포함)', meaning: '  407,000 ' },
+        { word: '알라딘필 1회(등/가슴)', meaning: '  220,000 ' },
+        { word: '베이직+알라딘필 (다른날 사용 가능)	3회+1회', meaning: '  242,000 ' },
+        { word: '베이직+알라딘필 (다른날 사용 가능)	5회+2회', meaning: '  407,000 ' },
+        { word: '베이직+알라딘필 (다른날 사용 가능) 10회+3회', meaning: '  638,000 ' },
+        { word: 'PDT단독 1회', meaning: '  88,000 ' },
+        { word: 'PDT단독 3회', meaning: '  231,000 ' },
+        { word: 'PDT단독 5회', meaning: '  330,000 ' },
+        { word: '단독관리 1회', meaning: '  44,000 ' },
+        { word: '단독관리 10회', meaning: '  385,000 ' },
+        { word: '처방전	2주/4주', meaning: '5,000/10,000' },
+        { word: '연고 1개', meaning: '  5,000 ' },
+        { word: '주사(비보험) 1대', meaning: '  5,000 ' },
+        { word: '발기부전약	10알/20알', meaning: '5,000/10,000' },
+        { word: '사후피임약	1알', meaning: '  10,000 ' },
+        { word: 'TA	부위별', meaning: '  11,000 ' },
+        { word: '히알라제 1대', meaning: '  11,000 ' },
+        { word: '인모드FX 1회(부분)', meaning: '  88,000 ' },
+        { word: '인모드FX 1회(풀페)', meaning: '  143,000 ' },
+        { word: '인모드FX 3회(풀페)', meaning: '  385,000 ' },
+        { word: '인모드FORMA 1회(풀페)', meaning: '  143,000 ' },
+        { word: '인모드FORMA 3회(풀페)', meaning: '  385,000 ' },
+        { word: 'FX + FORMA	1회(풀페)', meaning: '  253,000 ' },
+        { word: 'FX + FORMA	3회(풀페)', meaning: '  715,000 ' },
+        { word: 'FX+FORMA+슈링크 1회(+300샷)', meaning: '  330,000 ' },
+        { word: 'FX+FORMA+슈링크 3회(+900샷)', meaning: '  935,000 ' },
+        { word: '문신제거 눈썹 양쪽 전체', meaning: '  77,000 ' },
+        { word: '문신제거 눈썹 끝(양쪽)', meaning: '  33,000 ' },
+        { word: '문신제거 눈썹 끝(한쪽)', meaning: '  16,500 ' },
+        { word: '문신제거 점 크기', meaning: '  11,000 ' },
+        { word: '문신제거 500원 크기', meaning: '  55,000 ' },
+        { word: '문신제거 손바닥 크기', meaning: '  165,000 ' },
+        { word: '사각B 50U', meaning: '  31,900 ' },
+        { word: '사각B(코어) 50U', meaning: '  88,000 ' },
+        { word: '사각B(제오민) 50U', meaning: '  121,000 ' },
+        { word: '주름B	1부위', meaning: '  20,900 ' },
+        { word: '주름B	3부위', meaning: '  62,700 ' },
+        { word: '주름B(코어) 1부위', meaning: '  33,000 ' },
+        { word: '주름B(코어) 2부위', meaning: '  66,000 ' },
+        { word: '주름B(코어) 3부위', meaning: '  99,000 ' },
+        { word: '주름B(제오민) 1부위', meaning: '  55,000 ' },
+        { word: '바디B 100U', meaning: '  86,900 ' },
+        { word: '바디B 200U', meaning: '  154,000 ' },
+        { word: '바디B 300U', meaning: '  231,000 ' },
+        { word: '바디B(코어) 100U', meaning: '  176,000 ' },
+        { word: '바디B(코어) 200U', meaning: '  352,000 ' },
+        { word: '바디B(코어) 300U', meaning: '  528,000 ' },
+        { word: '바디B(제오민) 100U 당', meaning: '  220,000 ' },
+        { word: '더모 리즈	1회', meaning: '  88,000 ' },
+        { word: '더모 코어	1회', meaning: '  121,000 ' },
+        { word: '더모 제오민 1회', meaning: '  165,000 ' },
+        { word: '더모 제오민 3회', meaning: '  495,000 ' },
+        { word: '브이올렛	1V/2CC', meaning: '  297,000 ' },
+        { word: '브이올렛	2V/4CC', meaning: '  484,000 ' },
+        { word: '아띠에르 인텐시브 (5CC 부터 7.7M 추가)	1CC', meaning: '  99,000 ' },
+        { word: '아띠에르 인텐시브 (5CC 부터 7.7M 추가)	2CC', meaning: '  176,000 ' },
+        { word: '아띠에르 인텐시브 (5CC 부터 7.7M 추가)	3CC', meaning: '  253,000 ' },
+        { word: '아띠에르 클래식(입술F) 0.5CC', meaning: '  66,000 ' },
+        { word: '아띠에르 클래식(입술F) 1CC', meaning: '  99,000 ' },
+        { word: '아띠에르 클래식(입술F) 1.5CC', meaning: '  165,000 ' },
+        { word: '뉴라미스 딥 1CC', meaning: '  143,000 ' },
+        { word: '뉴라미스 딥 2CC', meaning: '  286,000 ' },
+        { word: '뉴라미스 딥 3CC', meaning: '  429,000 ' },
+        { word: '뉴라미스 딥 4CC', meaning: '  572,000 ' },
+        { word: '뉴라미스 딥(입술F)	0.5CC', meaning: '  88,000 ' },
+        { word: '뉴라미스 딥(입술F)	1CC', meaning: '  143,000 ' },
+        { word: '뉴라미스 딥(입술F)	1.5CC', meaning: '  231,000 ' },
+        { word: '벨로테로 (소프트/볼륨) (5CC 부터 17.6M 추가) 1CC', meaning: '  286,000 ' },
+        { word: '벨로테로 (소프트/볼륨) (5CC 부터 17.6M 추가) 2CC', meaning: '  528,000 ' },
+        { word: '벨로테로 (소프트/볼륨) (5CC 부터 17.6M 추가) 3CC', meaning: '  726,000 ' },
+        { word: '벨로테로 (소프트/볼륨) (5CC 부터 17.6M 추가) 4CC', meaning: '  880,000 ' },
+        { word: '쥬비덤 (5CC 부터 15.4M 추가) 1CC', meaning: '  209,000 ' },
+        { word: '쥬비덤 (5CC 부터 15.4M 추가) 2CC', meaning: '  385,000 ' },
+        { word: '쥬비덤 (5CC 부터 15.4M 추가) 3CC', meaning: '  550,000 ' },
+        { word: '쥬비덤 (5CC 부터 15.4M 추가) 4CC', meaning: '  704,000 ' },
+      ];
+      
+      let currentIndex = 0;
+      let showMeaning = false;
+      
+      const wordElement = document.getElementById('word');
+      const showMeaningButton = document.getElementById('show-meaning');
+      const prevWordButton = document.getElementById('prev-word');
+      
+      function displayCurrentWord() {
+        const currentWord = words[currentIndex];
+        if (showMeaning) {
+          wordElement.innerText = currentWord.meaning;
+        } else {
+          wordElement.innerText = currentWord.word;
+        }
+      }
+      
+      function toggleShowMeaning() {
+        showMeaning = !showMeaning;
+        displayCurrentWord();
+        if (showMeaning) {
+          showMeaningButton.innerText = '상품보기';
+        } else {
+          showMeaningButton.innerText = '가격보기';
+        }
+      }
+      
+      function goToRandomWord() {
+        const randomIndex = Math.floor(Math.random() * words.length);
+        currentIndex = randomIndex;
+        displayCurrentWord();
+      }
+      
+      showMeaningButton.addEventListener('click', toggleShowMeaning);
+      prevWordButton.addEventListener('click', goToRandomWord);
+      
+      displayCurrentWord();
+    </script>
+  </body>
+</html>
